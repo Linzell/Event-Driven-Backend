@@ -1,17 +1,9 @@
 vars {
-  # LocalStack Freemium uses direct Lambda invocation
-  # API Gateway V2 requires paid Pro license
   baseUrl: http://localhost:4566/2015-03-31/functions
   apiLambda: dispensary-local-api
 
-  # Set automatically by Create Dispense request
   dispenseId: SET_BY_CREATE_DISPENSE
 
-  # Set automatically by Upload Prescription URL request
   uploadUrl: SET_BY_UPLOAD_PRESCRIPTION_URL
   prescriptionUrl: SET_BY_UPLOAD_PRESCRIPTION_URL
 }
-
-vars:secret [
-
-]

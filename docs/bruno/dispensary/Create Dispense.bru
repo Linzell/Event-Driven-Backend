@@ -30,7 +30,7 @@ script:post-response {
   // Lambda response has body as string, need to parse twice
   const lambdaResponse = res.getBody();
   const responseBody = JSON.parse(lambdaResponse.body);
-  
+
   bru.setVar("dispenseId", responseBody.id);
   console.log("Dispense created:", responseBody.id);
 }

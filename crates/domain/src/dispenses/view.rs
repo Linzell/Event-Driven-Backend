@@ -1,11 +1,11 @@
-use std::sync::Arc;
+use super::{Dispense, AGGREGATE_TYPE};
 use async_trait::async_trait;
 use cqrs_es::{
     persist::{PersistenceError, ViewContext, ViewRepository},
     Aggregate, EventEnvelope, View as CqrsView,
 };
 use serde::{Deserialize, Serialize};
-use super::{Dispense, AGGREGATE_TYPE};
+use std::sync::Arc;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, Eq, PartialEq)]
 pub struct View {

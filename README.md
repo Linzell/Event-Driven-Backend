@@ -42,20 +42,21 @@ docker-compose up -d
 
 **For local (Mac ARM64):**
 ```bash
-cargo lambda build --release --arm64 --output-format zip
+cargo make lambda-build
 ```
 
 **For AWS deployment (x86_64):**
 ```bash
-cargo lambda build --release --x86-64 --output-format zip
+# Update Makefile.toml to use --x86-64 instead of --arm64, then:
+cargo make lambda-build
 ```
 
 ### 4. Deploy Infrastructure
 
 ```bash
 cd infra/local
-terraform init
-terraform apply
+cargo make tf init
+cargo make tf apply --auto-approve
 ```
 
 ### 6. Test with Bruno
@@ -203,8 +204,9 @@ Your auth token from `.env` is required for access.
 
 **Build and deploy:**
 ```bash
-# Build for AWS (x86_64)
-cargo lambda build --release --x86-64 --output-format zip
+# Update Makefile.toml to use --x86-64 instead of --arm64
+# Then build all lambdas:
+cargo make lambda-build
 
 # Deploy infrastructure
 cd infra/aws

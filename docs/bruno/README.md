@@ -19,16 +19,17 @@ You must run requests in order:
 ## Request Order
 
 Execute in sequence:
+
 1. **Create Dispense** - Creates new dispense, saves ID to environment
 2. **Get Dispense** - Retrieves the created dispense
-3. **Add Patient** - Adds patient information
-4. **Add Drugs** - Adds medications
-5. **Complete Dispense** - Finalizes workflow
-6. **Upload Prescription URL** - Gets S3 presigned URL
+3. **Upload Prescription File** - Upload prescription image to S3 (triggers AI analysis)
+4. **Add Patient** - Adds patient information
+5. **Add Drugs** - Adds medications
+6. **Complete Dispense** - Finalizes workflow
 
 ## Lambda Response Format
 
-Since we invoke Lambda directly, responses are wrapped:
+Since we invoke Lambda directly (LocalStack Freemium doesn't support API Gateway V2), responses are wrapped:
 
 ```json
 {
@@ -63,6 +64,7 @@ curl -X POST "http://localhost:4566/2015-03-31/functions/dispensary-local-api/in
 ### Connection refused
 - Check LocalStack is running: `docker ps | grep dispensary`
 - Verify endpoint: `http://localhost:4566`
+- Restart LocalStack: `docker-compose restart`
 
 ### Lambda not found
 - Verify deployment: `cd infra/local && terraform output`

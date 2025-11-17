@@ -25,19 +25,20 @@ run_task = { name = [
 
 [tasks.lambda-build-api]
 command = "cargo"
-args = ["lambda", "build", "--bin", "api", "--release"]
+args = ["lambda", "build", "--bin", "api", "--release", "--arm64", "--output-format", "zip"]
 
+# Other lambdas
 [tasks.lambda-build-publisher]
 command = "cargo"
-args = ["lambda", "build", "--bin", "publisher", "--release"]
+args = ["lambda", "build", "--bin", "publisher", "--release", "--arm64", "--output-format", "zip"]
 
 [tasks.lambda-build-projector-views]
 command = "cargo"
-args = ["lambda", "build", "--bin", "projector-views", "--release"]
+args = ["lambda", "build", "--bin", "projector-views", "--release", "--arm64", "--output-format", "zip"]
 
 [tasks.lambda-build-projector-analyzer]
 command = "cargo"
-args = ["lambda", "build", "--bin", "projector-analyzer", "--release"]
+args = ["lambda", "build", "--bin", "projector-analyzer", "--release", "--arm64", "--output-format", "zip"]
 
 [tasks.clean]
 command = "cargo"

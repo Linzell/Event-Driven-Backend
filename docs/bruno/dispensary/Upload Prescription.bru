@@ -1,12 +1,12 @@
 meta {
-  name: Upload Prescription File
+  name: Upload Prescription
   type: http
-  seq: 3
+  seq: 4
 }
 
 put {
   url: http://localhost:4566/dispensary-local-prescriptions/prescriptions/{{dispenseId}}/prescription.jpg
-  body: binary
+  body: multipartForm
   auth: none
 }
 
@@ -14,8 +14,8 @@ headers {
   Content-Type: image/jpeg
 }
 
-body:binary {
-  @file(../assets/ok.jpg)
+body:multipart-form {
+  file: @file(../assets/ok.jpg)
 }
 
 script:post-response {

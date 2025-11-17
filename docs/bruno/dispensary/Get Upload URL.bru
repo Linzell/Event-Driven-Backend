@@ -1,0 +1,43 @@
+meta {
+  name: Get Upload URL
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/{{apiLambda}}/invocations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "version": "2.0",
+    "routeKey": "POST /dispenses/{{dispenseId}}/prescription/upload-url",
+    "rawPath": "/dispenses/{{dispenseId}}/prescription/upload-url",
+    "pathParameters": {
+      "id": "{{dispenseId}}"
+    },
+    "headers": {
+      "content-type": "application/json"
+    },
+    "requestContext": {
+      "http": {
+        "method": "POST",
+        "path": "/dispenses/{{dispenseId}}/prescription/upload-url"
+      }
+    },
+    "body": "{\"file_name\":\"prescription.jpg\",\"content_type\":\"image/jpeg\"}",
+    "isBase64Encoded": false
+  }
+}
+
+script:post-response {
+  const lambdaResponse = res.getBody();
+  const responseBody = JSON.parse(lambdaResponse.body);
+
+  bru.setVar("uploadUrl", responseBody.upload_url);
+  bru.setVar("prescriptionKey", responseBody.key);
+  console.log("Upload URL generated:", responseBody.upload_url);
+  console.log("Prescription key:", responseBody.key);
+}
