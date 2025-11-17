@@ -1,0 +1,33 @@
+meta {
+  name: Add Patient
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/{{apiLambda}}/invocations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "version": "2.0",
+    "routeKey": "POST /dispenses/{{dispenseId}}/patient",
+    "rawPath": "/dispenses/{{dispenseId}}/patient",
+    "pathParameters": {
+      "id": "{{dispenseId}}"
+    },
+    "headers": {
+      "content-type": "application/json"
+    },
+    "requestContext": {
+      "http": {
+        "method": "POST",
+        "path": "/dispenses/{{dispenseId}}/patient"
+      }
+    },
+    "body": "{\"patient_id\":\"P123\",\"name\":\"John Doe\"}",
+    "isBase64Encoded": false
+  }
+}

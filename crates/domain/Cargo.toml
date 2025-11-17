@@ -1,0 +1,15 @@
+[package]
+name = "domain"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aws-sdk-dynamodb = { workspace = true }
+cqrs-es = { workspace = true }
+dynamo-es = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+thiserror = { workspace = true }
+derive-new = { workspace = true }

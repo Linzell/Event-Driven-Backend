@@ -1,0 +1,35 @@
+meta {
+  name: Get Dispense
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/{{apiLambda}}/invocations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "version": "2.0",
+    "routeKey": "GET /dispenses/{{dispenseId}}",
+    "rawPath": "/dispenses/{{dispenseId}}",
+    "pathParameters": {
+      "id": "{{dispenseId}}"
+    },
+    "requestContext": {
+      "http": {
+        "method": "GET",
+        "path": "/dispenses/{{dispenseId}}"
+      }
+    },
+    "isBase64Encoded": false
+  }
+}
+
+script:post-response {
+  const lambdaResponse = res.getBody();
+  const responseBody = JSON.parse(lambdaResponse.body);
+  console.log("Dispense status:", responseBody.dispense.status);
+}

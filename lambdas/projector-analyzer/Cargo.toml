@@ -1,0 +1,23 @@
+[package]
+name = "projector-analyzer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+domain = { path = "../../crates/domain" }
+
+aws-config = { workspace = true }
+aws-sdk-s3 = { workspace = true }
+aws-sdk-dynamodb = { workspace = true }
+aws_lambda_events = { workspace = true }
+lambda_runtime = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+dotenvy = { workspace = true }
+cqrs-es = { workspace = true }
+dynamo-es = { workspace = true }
+ulid = { workspace = true }
+chrono = { workspace = true }

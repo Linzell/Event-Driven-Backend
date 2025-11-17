@@ -1,0 +1,35 @@
+# Rust
+/target
+Cargo.lock
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+*.tfvars
+!*.tfvars.example
+
+# LocalStack
+volume/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+.DS_Store
+
+# Testing
+response.json
+test-lambda.json
+
+# Logs
+*.log

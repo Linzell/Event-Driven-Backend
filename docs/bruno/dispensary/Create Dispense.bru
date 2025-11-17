@@ -1,0 +1,36 @@
+meta {
+  name: Create Dispense
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/{{apiLambda}}/invocations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "version": "2.0",
+    "routeKey": "POST /dispenses",
+    "rawPath": "/dispenses",
+    "requestContext": {
+      "http": {
+        "method": "POST",
+        "path": "/dispenses"
+      }
+    },
+    "body": "{}",
+    "isBase64Encoded": false
+  }
+}
+
+script:post-response {
+  // Lambda response has body as string, need to parse twice
+  const lambdaResponse = res.getBody();
+  const responseBody = JSON.parse(lambdaResponse.body);
+  
+  bru.setVar("dispenseId", responseBody.id);
+  console.log("Dispense created:", responseBody.id);
+}

@@ -1,0 +1,29 @@
+meta {
+  name: Complete Dispense
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/{{apiLambda}}/invocations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "version": "2.0",
+    "routeKey": "POST /dispenses/{{dispenseId}}/complete",
+    "rawPath": "/dispenses/{{dispenseId}}/complete",
+    "pathParameters": {
+      "id": "{{dispenseId}}"
+    },
+    "requestContext": {
+      "http": {
+        "method": "POST",
+        "path": "/dispenses/{{dispenseId}}/complete"
+      }
+    },
+    "isBase64Encoded": false
+  }
+}

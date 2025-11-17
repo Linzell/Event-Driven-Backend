@@ -1,0 +1,44 @@
+[config]
+default_to_workspace = false
+
+[tasks.docker]
+command = "docker-compose"
+args = ["-f", "docker-compose.yml", "${@}"]
+
+[tasks.tf]
+cwd = "./infra/local"
+command = "terraform"
+args = ["${@}"]
+
+[tasks.tf-dev]
+cwd = "./infra/aws"
+command = "terraform"
+args = ["${@}"]
+
+[tasks.lambda-build]
+run_task = { name = [
+    "lambda-build-api",
+    "lambda-build-publisher",
+    "lambda-build-projector-views",
+    "lambda-build-projector-analyzer",
+] }
+
+[tasks.lambda-build-api]
+command = "cargo"
+args = ["lambda", "build", "--bin", "api", "--release"]
+
+[tasks.lambda-build-publisher]
+command = "cargo"
+args = ["lambda", "build", "--bin", "publisher", "--release"]
+
+[tasks.lambda-build-projector-views]
+command = "cargo"
+args = ["lambda", "build", "--bin", "projector-views", "--release"]
+
+[tasks.lambda-build-projector-analyzer]
+command = "cargo"
+args = ["lambda", "build", "--bin", "projector-analyzer", "--release"]
+
+[tasks.clean]
+command = "cargo"
+args = ["clean"]

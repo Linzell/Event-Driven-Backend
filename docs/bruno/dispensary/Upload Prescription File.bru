@@ -1,0 +1,25 @@
+meta {
+  name: Upload Prescription File
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:4566/dispensary-local-prescriptions/prescriptions/{{dispenseId}}/prescription.jpg
+  body: binary
+  auth: none
+}
+
+headers {
+  Content-Type: image/jpeg
+}
+
+body:binary {
+  @file(../assets/ok.jpg)
+}
+
+script:post-response {
+  console.log("File uploaded to S3");
+  console.log("Analyzer Lambda will be triggered automatically");
+  console.log("Path: prescriptions/" + bru.getVar("dispenseId") + "/prescription.jpg");
+}
