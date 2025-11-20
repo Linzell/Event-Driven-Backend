@@ -19,7 +19,9 @@ docker --version          # LocalStack
 
 # Install if missing
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-brew install cargo-lambda terraform docker
+brew install cargo-make docker
+brew tap hashicorp/tap   
+brew install hashicorp/tap/terraform
 ```
 
 ## Quick Start
