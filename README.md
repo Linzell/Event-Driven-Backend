@@ -56,7 +56,6 @@ cargo make lambda-build
 ### 4. Deploy Infrastructure
 
 ```bash
-cd infra/local
 cargo make tf init
 cargo make tf apply --auto-approve
 ```
